@@ -8,7 +8,10 @@ url = 'https://www.atomtickets.com/movies/avengers-endgame/284981'
 response = http.request('GET', url)
 soup = BeautifulSoup(response.data, 'html.parser')
 
-showtimes_panel =  soup.find('div', attrs={'class': 'showtime-panel '})
+theater = soup.find('div', attrs={'class': 'venue-header__cell venue-header__cell--info venue-header__cell--padded'})
+print(theater.text)
+
+showtimes_panel = soup.find_all('div', attrs={'class': 'format-showtimes clearfix'})
 print(showtimes_panel)
 
 # http = urllib3.PoolManager()
