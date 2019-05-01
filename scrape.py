@@ -2,16 +2,14 @@
 import urllib3
 from bs4 import BeautifulSoup
 
-from bs4 import BeautifulSoup
-import urllib3
-
 http = urllib3.PoolManager()
 
-url = 'https://www.fandango.com/avengers-endgame-2019-215871/movie-times'
+url = 'https://www.atomtickets.com/movies/avengers-endgame/284981'
 response = http.request('GET', url)
-soup = BeautifulSoup(response.data)
+soup = BeautifulSoup(response.data, 'html.parser')
 
-print(soup)
+showtimes_panel =  soup.find('div', attrs={'class': 'showtime-panel '})
+print(showtimes_panel)
 
 # http = urllib3.PoolManager()
 
