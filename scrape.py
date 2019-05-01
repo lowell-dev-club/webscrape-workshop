@@ -1,12 +1,15 @@
 # import libraries
-import urllib3
-from bs4 import BeautifulSoup
-
-http = urllib3.PoolManager()
+from bs4 import BeautifulSoup as bs4
+from requests import get
 
 url = 'https://www.atomtickets.com/movies/avengers-endgame/284981'
-response = http.request('GET', url)
-soup = BeautifulSoup(response.data, 'html.parser')
+
+# Request Page
+r = get(url)
+page = r.text
+
+# Parse Page Data
+soup = bs4(page, 'html.parser')
 
 theater = soup.find('div', attrs={'class': 'venue-header__cell venue-header__cell--info venue-header__cell--padded'})
 print(theater.text)
