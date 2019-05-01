@@ -1,15 +1,15 @@
 # import libraries
-import urllib3
-from bs4 import BeautifulSoup
-
-from bs4 import BeautifulSoup
-import urllib3
-
-http = urllib3.PoolManager()
+from bs4 import BeautifulSoup as bs4
+from requests import get
 
 url = 'https://www.fandango.com/avengers-endgame-2019-215871/movie-times'
-response = http.request('GET', url)
-soup = BeautifulSoup(response.data)
+
+# Request Page
+r = get(url)
+page = r.text
+
+# Parse Page Data
+soup = bs4(page, 'html.parser')
 
 print(soup)
 
