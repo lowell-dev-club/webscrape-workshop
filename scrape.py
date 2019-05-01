@@ -14,8 +14,11 @@ soup = bs4(page, 'html.parser')
 theater = soup.find('div', attrs={'class': 'venue-header__cell venue-header__cell--info venue-header__cell--padded'})
 print(theater.text)
 
-showtimes_panel = soup.find_all('div', attrs={'class': 'format-showtimes clearfix'})
+showtimes_panel = soup.find('ul', attrs={'class': 'format-showtimes__list clearfix'})
 print(showtimes_panel)
+times = showtimes_panel.findChildren('li')
+for time in times:
+	print(time.text)
 
 # http = urllib3.PoolManager()
 
